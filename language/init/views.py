@@ -24,7 +24,11 @@ def init(request):
         
         # Python
         pythonCategory = popCategory('Python')
-        popPage(category=pythonCategory,
+        popPage(category=pythonCategory,.*
+*~
+*.pyc
+00*.py
+* 但 EGit 在 Com
                 title='官方 Python 教材',
                 url='http://docs.python.org/2/tutorial/')
         popPage(category=pythonCategory,
