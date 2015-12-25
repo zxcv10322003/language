@@ -1,16 +1,19 @@
-<!doctype html>
-{% load staticfiles %}
-<html>
-<head>
-<title>程式語言小百科</title>
-<meta charset=utf-8>
-<link rel=stylesheet href={% static 'main/css/main.css' %}>
-</head>
-<body>
-<h1>Django說--Hello world!</h1>
-<p>{{message}}</p>
+{% extends "main/base.html" %}
+{% block heading %}首頁{% endblock %}
+{% block content %}
+<p>{{like}}</p>
+{% if messages %}
+ {% for message in messages %}
+ <p {% if message.tags %} class={{message.tags}} {% endif %}>{{message}}</p>
+ {% endfor %}
+{% endif %}
 <p>現在時間：<span style=color:red;>{{time}}</span></p>
-<a href={% url 'wiki:about' %}>關於程式語言小百科</a><br>
-<a href={% url 'wiki:wiki' %}>前往Wiki頁面</a><br>
-</body>
-</html>
+<p><a href={% url 'wiki:about' %}>關於程式語言小百科</a><br></p>
+<p><a href={% url 'wiki:wiki' %}>前往Wiki頁面</a><br></p>
+{% if user.is_authenticated %}
+ 	<p><a href={% url 'account:userLogout' %}>登出 ({{user.username}})</a></p>
+{% else %}
+<p><a href={% url 'account:register' %}>註冊</a></p>
+<p><a href={% url 'account:userLogin' %}>登入</a></p>
+{% endif %}
+{% endblock %}
